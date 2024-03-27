@@ -5,5 +5,5 @@ interface LayoutProps {
 }
 
 export function DashboardLayout({ children }: LayoutProps) {
-  return <div className="mt-16 px-4">{children}</div>;
+  return <main className="mt-16 px-4 w-full h-auto">{children}</main>;
 }

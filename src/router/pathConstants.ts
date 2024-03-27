@@ -6,5 +6,5 @@ export const pathConstants = {
   HOME: "/",
   REGISTER: "/register",
   LOGIN: "/login",
-  PROJECT: "/projects/:projectId",
+  PROJECT: "/projects",
 };

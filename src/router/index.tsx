@@ -11,7 +11,10 @@ export const Router = () => {
       <Route path={pathConstants.LOGIN} element={<Login />} />
       <Route path={pathConstants.REGISTER} element={<Register />} />
       <Route path={pathConstants.HOME} element={<Dashboard />} />
-      <Route path={pathConstants.PROJECT} element={<Project />} />
+      <Route
+        path={`${pathConstants.PROJECT}/:projectId`}
+        element={<Project />}
+      />
     </Routes>
   );
 };
