@@ -7,7 +7,7 @@ interface ProjectsProps {
 
 export function Projects({ projects }: ProjectsProps) {
   return (
-    <div className="mt-4">
+    <div className="mt-4 flex gap-4">
       {projects?.map((project) => {
         return <ProjectCard key={project.id} project={project} />;
       })}

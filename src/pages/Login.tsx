@@ -16,8 +16,6 @@ export function Login() {
     console.log(data);
   };
 
-  console.log(errors);
-
   return (
     <div className="container mx-auto flex justify-center items-center h-screen">
       <div className="w-1/4 shadow-md flex flex-col items-center px-3 py-5 rounded-sm">

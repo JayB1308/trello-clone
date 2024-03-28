@@ -1,25 +1,34 @@
-import { useEffect, useState } from "react";
-import { apiInstance } from "../axios";
+import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Projects } from "../components/Projects";
+import { CreateProject } from "../components/CreateProjects";
 import { DashboardLayout } from "../layout/DashboardLayout";
+import { ModalLayout } from "../layout/ModalLayout";
+import { IoIosAddCircleOutline } from "react-icons/io";
+import { open } from "../store";
 
 export function Dashboard() {
-  const [projects, setProjects] = useState([]);
+  const dispatch = useDispatch();
+  const projects = useSelector((state) => state.projects.projects);
+  const isOpen = useSelector((state) => state.modal.isOpen);
   const [page, setPage] = useState<number>(0);
-
-  const getProjects = async () => {
-    const response = await apiInstance.get(`/projects?_page=${page}&_limit=10`);
-    setProjects(response.data);
-  };
-
-  useEffect(() => {
-    getProjects();
-  }, []);
 
   return (
     <DashboardLayout>
-      <div className="w-full border-b-2 border-slate-700 flex items-center justify-between px-2 py-2">
+      {isOpen && (
+        <ModalLayout>
+          <CreateProject />
+        </ModalLayout>
+      )}
+      <div className="w-full border-b-2 border-slate-700 flex items-center justify-between px-2 py-2 mt-3">
         <h1 className="text-3xl font-semibold text-slate-600">Projects</h1>
+        <button
+          className="rounded-full w-1/6 bg-blue-600 text-white flex items-center justify-between px-2 py-1"
+          onClick={() => dispatch(open())}
+        >
+          <IoIosAddCircleOutline size={28} />
+          Create Project
+        </button>
       </div>
       <div className="px-3">
         <Projects projects={projects} />
