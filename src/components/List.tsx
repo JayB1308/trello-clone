@@ -4,8 +4,8 @@ import { IoIosAddCircleOutline } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import { ModalLayout } from "../layout/ModalLayout";
 import { changeList, open } from "../store";
-import { List as ListType } from "../types/List.type";
-import { Task as TaskType } from "../types/Task.type";
+import { List as ListType } from "../core/types/list.type";
+import { Task as TaskType } from "../core/types/task.type";
 import { CreateTask } from "./CreateTask";
 import { Task } from "./Task";
 import { TaskModal } from "./TaskModal";
@@ -70,11 +70,7 @@ export function List({ list }: ListProps) {
           />
         </button>
       </div>
-      <div
-        className={`px-3 flex flex-col items-center w-full mt-2 ${
-          isOver ? "bg-gray-400" : "bg-white"
-        }`}
-      >
+      <div className={`px-3 flex flex-col items-center w-full mt-2 `}>
         {currentTasks.map((task) => {
           return <Task key={task.id} task={task} onSelect={setOpenTask} />;
         })}

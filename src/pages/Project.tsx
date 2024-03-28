@@ -3,12 +3,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { DashboardLayout } from "../layout/DashboardLayout";
 import { CreateList } from "../components/CreateList";
 import { useParams } from "react-router-dom";
-import { Project as ProjectType } from "../types/Project.type";
+import { Project as ProjectType } from "../core/types/project.type";
 import { getImage } from "../utils";
 import { ModalLayout } from "../layout/ModalLayout";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { open } from "../store";
-import { List as ListType } from "../types/List.type";
+import { List as ListType } from "../core/types/list.type";
 import { List } from "../components/List";
 
 export function Project() {

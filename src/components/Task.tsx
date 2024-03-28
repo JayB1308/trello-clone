@@ -1,5 +1,5 @@
 import { SetStateAction } from "react";
-import { Task as TaskType } from "../types/Task.type";
+import { Task as TaskType } from "../core/types/task.type";
 import { FaRegUserCircle } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { open } from "../store";

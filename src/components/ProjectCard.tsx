@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { Project } from "../types/Project.type";
+import { Project } from "../core/types/project.type";
 import { pathConstants } from "../router/pathConstants";
 import { getImage } from "../utils";
 import { removeProject } from "../store";

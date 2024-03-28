@@ -1,5 +1,5 @@
 import { createSlice, nanoid } from "@reduxjs/toolkit";
-import { List } from "../../types/List.type";
+import { List } from "../../core/types/list.type";
 
 interface ListState {
   lists: Array<List>;

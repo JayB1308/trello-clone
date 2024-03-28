@@ -1,6 +1,6 @@
 import { createSlice, nanoid, PayloadAction } from "@reduxjs/toolkit";
-import { Project } from "../../types/Project.type";
-import { CreateProjectPayload } from "../../types/createProjectPayload.interface";
+import { Project } from "../../core/types/project.type";
+import { CreateProjectPayload } from "../../core/interfaces/create-project-payload.interface";
 
 interface ProjectState {
   projects: Array<Project>;

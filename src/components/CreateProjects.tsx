@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { addProject, close } from "../store";
 import { useForm } from "react-hook-form";
-import { CreateProjectPayload } from "../types/createProjectPayload.interface";
+import { CreateProjectPayload } from "../core/interfaces/create-project-payload.interface";
 
 export function CreateProject() {
   const dispatch = useDispatch();

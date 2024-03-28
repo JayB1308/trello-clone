@@ -1,4 +1,4 @@
-import { Task } from "../types/Task.type";
+import { Task } from "../core/types/task.type";
 import { FaRegUserCircle } from "react-icons/fa";
 import { FaRegCalendar } from "react-icons/fa";
 import dayjs from "dayjs";
