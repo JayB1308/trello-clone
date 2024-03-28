@@ -18,6 +18,7 @@ export function Project() {
   const [currentProject, setCurrentProject] = useState<ProjectType>();
   const isOpen = useSelector((state) => state.modal.isOpen);
   const allLists = useSelector((state) => state.list.lists);
+  const modalId = useSelector((state) => state.modal.id);
   const { projectId } = useParams();
 
   const projects: Array<ProjectType> = useSelector(
@@ -58,7 +59,7 @@ export function Project() {
 
   return (
     <DashboardLayout>
-      {isOpen && (
+      {isOpen && modalId === "create-list" && (
         <ModalLayout>
           <CreateList />
         </ModalLayout>
@@ -82,7 +83,7 @@ export function Project() {
             <h1 className="text-3xl font-semibold ml-2">Lists</h1>
             <button
               className="w-1/6 bg-blue-600 flex items-center justify-between text-white font-semibold rounded-full px-2 py-1"
-              onClick={() => dispatch(open())}
+              onClick={() => dispatch(open({ id: "create-list" }))}
             >
               <IoIosAddCircleOutline size={28} />
               Add List

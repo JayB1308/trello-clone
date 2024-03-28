@@ -23,13 +23,33 @@ const taskSlice = createSlice({
             id: nanoid(),
             title: action.payload.title,
             description: action.payload.description,
+            assignedUser: action.payload.assignedUser,
+            dueDate: action.payload.dueDate,
             listId: action.payload.listId,
           },
         ],
+      };
+    },
+
+    changeList(
+      state,
+      action: PayloadAction<{ taskID: string; listID: string }>
+    ) {
+      return {
+        ...state,
+        tasks: state.tasks.map((task) => {
+          if (task.id !== action.payload.taskID) {
+            return task;
+          }
+          return {
+            ...task,
+            listId: action.payload.listID,
+          };
+        }),
       };
     },
   },
 });
 
 export const taskReducer = taskSlice.reducer;
-export const { addTask } = taskSlice.actions;
+export const { addTask, changeList } = taskSlice.actions;

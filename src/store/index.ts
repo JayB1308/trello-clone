@@ -12,7 +12,7 @@ import {
   removeProject,
 } from "./slices/projectSlice";
 import { listReducer, addList } from "./slices/listSlice";
-import { taskReducer, addTask } from "./slices/taskSlice";
+import { taskReducer, addTask, changeList } from "./slices/taskSlice";
 import { modalReducer, open, close } from "./slices/modalSlice";
 
 const store = configureStore({
@@ -20,7 +20,7 @@ const store = configureStore({
     users: userReducer,
     projects: projectReducers,
     list: listReducer,
-    taskReducer: taskReducer,
+    task: taskReducer,
     modal: modalReducer,
   },
 });
@@ -37,4 +37,5 @@ export {
   removeProject,
   addList,
   addTask,
+  changeList,
 };
