@@ -1,7 +1,6 @@
 import { useDispatch } from "react-redux";
 import { addProject, close } from "../store";
-import { useForm } from "react-hook-form";
-import { CreateProjectPayload } from "../core/interfaces/create-project-payload.interface";
+import { FieldValues, useForm } from "react-hook-form";
 
 export function CreateProject() {
   const dispatch = useDispatch();
@@ -11,7 +10,7 @@ export function CreateProject() {
     formState: { errors },
   } = useForm();
 
-  const onSubmitHandler = (data: CreateProjectPayload) => {
+  const onSubmitHandler = (data: FieldValues) => {
     dispatch(addProject({ title: data.title, description: data.description }));
     dispatch(close());
   };

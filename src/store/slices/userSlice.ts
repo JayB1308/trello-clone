@@ -15,7 +15,7 @@ const initialState: UserState = {
 };
 
 const userSlice = createSlice({
-  name: "users",
+  name: "user",
   initialState: initialState,
   reducers: {
     addUser(state, action: PayloadAction<CreateUserPayload>) {
@@ -49,5 +49,5 @@ const userSlice = createSlice({
   },
 });
 
-export const userReducer = userSlice.reducer;
+export const { reducer: userReducer, actions } = userSlice;
 export const { addUser, login, logout } = userSlice.actions;

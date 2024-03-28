@@ -8,6 +8,7 @@ interface CreateTaskProps {
 }
 
 export function CreateTask({ listId }: CreateTaskProps) {
+  console.log(listId);
   const dispatch = useDispatch();
   const {
     register,

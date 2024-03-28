@@ -1,32 +1,20 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { Project } from "../core/types/project.type";
 import { pathConstants } from "../router/pathConstants";
-import { getImage } from "../utils";
 import { removeProject } from "../store";
 import { MdDeleteOutline } from "react-icons/md";
+import { images } from "../assets";
 
 interface ProjectCardProps {
   project: Project;
 }
 
 export function ProjectCard({ project }: ProjectCardProps) {
+  const [image, setImage] = useState<number>(0);
   const dispatch = useDispatch();
-  const [image, setImage] = useState<string>("");
   const navigate = useNavigate();
-
-  const fetchImage = async () => {
-    const url = await getImage();
-
-    if (url) {
-      setImage(url);
-    }
-  };
-
-  useEffect(() => {
-    fetchImage();
-  }, []);
 
   const goToProject = () => {
     navigate(`${pathConstants.PROJECT}/${project.id}`);
@@ -36,10 +24,16 @@ export function ProjectCard({ project }: ProjectCardProps) {
     dispatch(removeProject({ id: project.id }));
   };
 
+  useEffect(() => {
+    if (project.image) {
+      setImage(project.image);
+    }
+  }, []);
+
   return (
     <div className="w-48 bg-white shadow-lg rounded">
       <img
-        src={image}
+        src={images[image]}
         alt="card-header"
         className="h-36 w-full cursor-pointer"
         onClick={goToProject}

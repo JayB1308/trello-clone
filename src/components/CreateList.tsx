@@ -14,7 +14,9 @@ export function CreateList() {
   } = useForm();
 
   const onSubmitHandler = (data: FieldValues) => {
-    dispatch(addList({ name: data.name, projectId: projectId }));
+    if (projectId) {
+      dispatch(addList({ name: data.name, projectId: projectId }));
+    }
     dispatch(close());
   };
 

@@ -3,12 +3,14 @@ import { useDrop } from "react-dnd";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import { ModalLayout } from "../layout/ModalLayout";
-import { changeList, open } from "../store";
+import { changeList, open, removeList } from "../store";
 import { List as ListType } from "../core/types/list.type";
 import { Task as TaskType } from "../core/types/task.type";
 import { CreateTask } from "./CreateTask";
 import { Task } from "./Task";
 import { TaskModal } from "./TaskModal";
+import { MdOutlineDelete } from "react-icons/md";
+import { RootState } from "../store/root-state.type";
 
 interface ListProps {
   list: ListType;
@@ -16,9 +18,9 @@ interface ListProps {
 
 export function List({ list }: ListProps) {
   const dispatch = useDispatch();
-  const isOpen = useSelector((state) => state.modal.isOpen);
-  const modalId = useSelector((state) => state.modal.id);
-  const allTasks = useSelector((state) => state.task.tasks);
+  const isOpen = useSelector((state: RootState) => state.modal.isOpen);
+  const modalId = useSelector((state: RootState) => state.modal.id);
+  const allTasks = useSelector((state: RootState) => state.task.tasks);
 
   const [currentTasks, setCurrentTasks] = useState<Array<TaskType>>([]);
   const [openTask, setOpenTask] = useState<TaskType>();
@@ -41,6 +43,10 @@ export function List({ list }: ListProps) {
     setCurrentTasks(tasks);
   };
 
+  const handleDeleteList = () => {
+    dispatch(removeList({ id: list.id }));
+  };
+
   useEffect(() => {
     getTasks();
   }, [allTasks]);
@@ -50,7 +56,7 @@ export function List({ list }: ListProps) {
       ref={drop}
       className="w-1/4 min-h-[250px] border-[0.5] border border-gray-300 border-opacity-75 flex flex-col items-center rounded-md"
     >
-      {isOpen && modalId === "create-task" && (
+      {isOpen && modalId === `${list.id}-create-task` && (
         <ModalLayout>
           <CreateTask listId={list.id} />
         </ModalLayout>
@@ -61,12 +67,19 @@ export function List({ list }: ListProps) {
         </ModalLayout>
       )}
       <div className="w-full flex items-center justify-between px-2 rounded-t-md  border-b-2 border-blue-600 bg-blue-100">
-        <h1 className="font-bold text-md">{list.name}</h1>
+        <div className="flex items-center gap-1">
+          <h1 className="font-bold text-md">{list.name}</h1>
+          <MdOutlineDelete
+            size={24}
+            className="cursor-pointer text-red-600"
+            onClick={handleDeleteList}
+          />
+        </div>
         <button>
           <IoIosAddCircleOutline
             size={24}
             className="text-blue-500"
-            onClick={() => dispatch(open({ id: "create-task" }))}
+            onClick={() => dispatch(open({ id: `${list.id}-create-task` }))}
           />
         </button>
       </div>
