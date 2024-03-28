@@ -22,7 +22,7 @@ export function Project() {
   const { projectId } = useParams();
 
   const projects: Array<ProjectType> = useSelector(
-    (state) => state.projects.projects
+    (state) => state.project.projects
   );
 
   const getProjectImage = async () => {

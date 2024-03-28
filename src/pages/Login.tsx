@@ -1,11 +1,18 @@
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { FieldValues, useForm } from "react-hook-form";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { pathConstants } from "../router/pathConstants";
+import { login } from "../store";
+import { User } from "../core/types/user.type";
 
 export function Login() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState<boolean>(false);
+  const users = useSelector((state) => state.user.users);
   const {
     register,
     handleSubmit,
@@ -13,7 +20,14 @@ export function Login() {
   } = useForm();
 
   const onSubmitHandler = (data: FieldValues) => {
-    console.log(data);
+    const currentUser = users.find((user: User) => {
+      return user.username === data.username && user.password === data.password;
+    });
+
+    if (currentUser) {
+      dispatch(login(currentUser));
+      navigate(pathConstants.HOME);
+    }
   };
 
   return (

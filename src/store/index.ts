@@ -1,11 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import {
-  userReducer,
-  setCurrentUser,
-  login,
-  logout,
-  addUser,
-} from "./slices/userSlice";
+import { userReducer, login, logout, addUser } from "./slices/userSlice";
 import {
   projectReducers,
   addProject,
@@ -17,8 +11,8 @@ import { modalReducer, open, close } from "./slices/modalSlice";
 
 const store = configureStore({
   reducer: {
-    users: userReducer,
-    projects: projectReducers,
+    user: userReducer,
+    project: projectReducers,
     list: listReducer,
     task: taskReducer,
     modal: modalReducer,
@@ -30,7 +24,6 @@ export {
   addUser,
   login,
   logout,
-  setCurrentUser,
   open,
   close,
   addProject,

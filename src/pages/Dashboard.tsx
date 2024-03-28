@@ -9,7 +9,7 @@ import { open } from "../store";
 
 export function Dashboard() {
   const dispatch = useDispatch();
-  const projects = useSelector((state) => state.projects.projects);
+  const projects = useSelector((state) => state.project.projects);
   const isOpen = useSelector((state) => state.modal.isOpen);
   const modalId = useSelector((state) => state.modal.id);
   const [page, setPage] = useState<number>(0);

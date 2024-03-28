@@ -1,9 +1,14 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FieldValues, useForm } from "react-hook-form";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useState } from "react";
 import { pathConstants } from "../router/pathConstants";
+import { useDispatch } from "react-redux";
+import { addUser } from "../store";
+
 export function Register() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [showConfirmPassword, setShowConfirmPassword] =
     useState<boolean>(false);
@@ -11,11 +16,25 @@ export function Register() {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm();
 
+  const validateConfirmPassword = (value: string) => {
+    const password = watch("password");
+
+    return value === password || "Passwords do not match";
+  };
+
   const onSubmitHandler = (data: FieldValues) => {
-    console.log(data);
+    dispatch(
+      addUser({
+        username: data.username,
+        email: data.email,
+        password: data.password,
+      })
+    );
+    navigate(pathConstants.LOGIN);
   };
 
   return (
@@ -33,7 +52,13 @@ export function Register() {
             <input
               type="text"
               className="text-md outline-none rounded-md px-2 py-1 border-2"
-              {...register("username", { required: "Username is required" })}
+              {...register("username", {
+                required: "Username is required",
+                minLength: {
+                  value: 3,
+                  message: "Username should of length 3 atleast",
+                },
+              })}
             />
             {errors.username && typeof errors.username.message === "string" && (
               <p className="text-red-500 text-xs">{errors.username.message}</p>
@@ -44,7 +69,13 @@ export function Register() {
             <input
               type="email"
               className="text-md outline-none rounded-md px-2 py-1 border-2"
-              {...register("email", { required: "Email is required" })}
+              {...register("email", {
+                required: "Email is required",
+                pattern: {
+                  value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+                  message: "Please enter a valid email",
+                },
+              })}
             />
             {errors.email && typeof errors.email.message === "string" && (
               <p className="text-red-500 text-xs">{errors.email.message}</p>
@@ -58,7 +89,13 @@ export function Register() {
               <input
                 type={showPassword ? "text" : "password"}
                 className="text-md outline-none border-r-2 w-[90%]"
-                {...register("password", { required: "Password is required" })}
+                {...register("password", {
+                  required: "Password is required",
+                  minLength: {
+                    value: 6,
+                    message: "Password should be of length 6 atleast.",
+                  },
+                })}
               />
               {showPassword ? (
                 <FaEyeSlash size={18} onClick={() => setShowPassword(false)} />
@@ -80,6 +117,7 @@ export function Register() {
                 className="text-md outline-none border-r-2 w-[90%]"
                 {...register("confirmPassword", {
                   required: "Please rewrite the password",
+                  validate: validateConfirmPassword,
                 })}
               />
               {showConfirmPassword ? (
@@ -106,7 +144,7 @@ export function Register() {
           </button>
         </form>
         <p className="mt-2 text-xs">
-          Already Have An Account?
+          Already Have An Account?{" "}
           <Link
             to={pathConstants.LOGIN}
             className="text-blue-600 underline font-semibold"
