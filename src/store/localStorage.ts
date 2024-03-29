@@ -1,5 +1,6 @@
 import { RootState } from "./root-state.type";
 
+//Saving redux state to localstorage
 export const loadState = () => {
   try {
     const serializedState = localStorage.getItem("reduxState");

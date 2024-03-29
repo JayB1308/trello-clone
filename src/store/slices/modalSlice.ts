@@ -8,6 +8,7 @@ const modalSlice = createSlice({
   },
   reducers: {
     open(state, action) {
+      //Using an ID here to make sure other modals other than the one specified are not triggered
       return {
         ...state,
         isOpen: true,

@@ -8,6 +8,7 @@ import { pathConstants } from "../router/pathConstants";
 import { login } from "../store";
 import { User } from "../core/types/user.type";
 import { RootState } from "../store/root-state.type";
+import { toast } from "react-hot-toast";
 
 export function Login() {
   const dispatch = useDispatch();
@@ -26,6 +27,7 @@ export function Login() {
     });
 
     if (currentUser) {
+      toast.success("Logged In!");
       dispatch(login(currentUser));
       navigate(pathConstants.HOME);
     }
@@ -62,6 +64,7 @@ export function Login() {
                 className="text-md outline-none border-r-2 w-[90%]"
                 {...register("password", { required: "Password is required" })}
               />
+              {/* Logic to display icons according to the state to show password or hide it */}
               {showPassword ? (
                 <span data-testid="hide">
                   <FaEyeSlash

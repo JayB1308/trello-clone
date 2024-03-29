@@ -49,6 +49,7 @@ export function Project() {
     getLists();
   }, []);
 
+  //Repopulate the lists according to the project, if number of lists changes
   useEffect(() => {
     getLists();
   }, [allLists]);

@@ -29,6 +29,7 @@ export function List({ list }: ListProps) {
     accept: "task",
     drop: (item: { task: TaskType }) => {
       if (item.task.listId !== list.id) {
+        //Changing the list ID for a task on dragging
         dispatch(changeList({ taskID: item.task.id, listID: list.id }));
       }
     },

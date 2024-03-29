@@ -29,6 +29,7 @@ export function Dashboard() {
 
     setCurrentProjects(currentPageProjects);
 
+    //Converting pages to a list of numbers
     setTotalPages(
       Array.from(
         { length: Math.ceil(projects.length / PROJECTPERPAGES) },
