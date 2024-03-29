@@ -33,6 +33,7 @@ export function Task({ task, onSelect }: TaskProps) {
 
   return (
     <div
+      data-testid={task.id}
       ref={drag}
       className={`w-full border-2 ${
         isDragging ? "border-blue-500" : "border-gray-500"

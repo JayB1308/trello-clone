@@ -17,13 +17,13 @@ export const data: RootState = {
     projects: [
       {
         id: "oIMha2gOxZSj4MxJ0Q9fY",
-        title: "alskdkajsdn",
-        description: "kajsdnkajsdn",
+        title: "A project",
+        description: "This a project",
       },
       {
         id: "iqJHi-73jkl9IeyMMjg42",
-        title: "alskmdkajsn",
-        description: "kajsndkajsd",
+        title: "Another Project",
+        description: "This is another project",
       },
     ],
   },
@@ -31,27 +31,27 @@ export const data: RootState = {
     lists: [
       {
         id: "ArfX0Sc4V1xC7RLmkk2m8",
-        name: "kjadnkaj",
+        name: "A list",
         projectId: "2SzOEih9b2-fTb_E_0-Ok",
       },
       {
         id: "0krOThmFGB6BBSgEFURTy",
-        name: "akjsndkajd",
+        name: "Another list",
         projectId: "2SzOEih9b2-fTb_E_0-Ok",
       },
       {
         id: "0hejQASpDL1lWbRnweHHB",
-        name: "alskdmalskd",
+        name: "A list #1",
         projectId: "oIMha2gOxZSj4MxJ0Q9fY",
       },
       {
         id: "8Yo8WyOcptEJ1-O3aXDmH",
-        name: "alskdm",
+        name: "A List #2",
         projectId: "oIMha2gOxZSj4MxJ0Q9fY",
       },
       {
         id: "jCWsx-itbsfYqFqyyX_5g",
-        name: "alksmd",
+        name: "A List #3",
         projectId: "oIMha2gOxZSj4MxJ0Q9fY",
       },
     ],
@@ -68,7 +68,7 @@ export const data: RootState = {
       },
       {
         id: "y5SHiuqxClXvS5kePAtcM",
-        title: "akjsdnkajsdn",
+        title: "This is a task",
         description: "aksjdnakjsd ",
         assignedUser: "kajsnkdj",
 
@@ -76,7 +76,7 @@ export const data: RootState = {
       },
       {
         id: "kPiFlpKVHYs_bJmFIYeT5",
-        title: "aksjdnkajsd",
+        title: "A task",
         description: "kajsndkja",
         assignedUser: "kjadsn",
 
@@ -84,7 +84,7 @@ export const data: RootState = {
       },
       {
         id: "XcITMW1CiRIDzR_T3VPpw",
-        title: "alksdmk",
+        title: "Another Task",
         description: "kajsndkj",
         assignedUser: "",
 
@@ -92,7 +92,7 @@ export const data: RootState = {
       },
       {
         id: "vusp8lcIU-6TcqoeMvRWF",
-        title: "kajsndkajs",
+        title: "Task #1",
         description: "kajsndkj",
         assignedUser: "",
 
