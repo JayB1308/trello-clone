@@ -46,9 +46,7 @@ describe("<List />", () => {
 
     //Checking if the task moved
     cy.get("@finalPosition").then((finalPosition) => {
-      //@ts-expect-error
       expect(finalPosition.left).to.be.greaterThan(0);
-      //@ts-expect-error
       expect(finalPosition.top).to.be.greaterThan(0);
     });
 
