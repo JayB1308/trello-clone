@@ -28,12 +28,15 @@ describe("<List />", () => {
   });
 
   it("should drag a task to another list", () => {
+    //Selecting task card
     cy.get('[data-testid="kPiFlpKVHYs_bJmFIYeT5"]').as("draggedTask");
 
+    //Selecting list to drop
     cy.get('[data-testid="0krOThmFGB6BBSgEFURTy"]').as("dropTarget");
 
     cy.get("@draggedTask").invoke("position").as("initialPosition");
 
+    //Moving the task
     cy.get("@draggedTask")
       .trigger("mousedown", { which: 1 })
       .trigger("mousemove", { clientX: 0, clientY: 500 })
@@ -41,6 +44,7 @@ describe("<List />", () => {
 
     cy.get("@draggedTask").invoke("position").as("finalPosition");
 
+    //Checking if the task moved
     cy.get("@finalPosition").then((finalPosition) => {
       expect(finalPosition.left).to.be.greaterThan(0);
       expect(finalPosition.top).to.be.greaterThan(0);
