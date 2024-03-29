@@ -54,7 +54,8 @@ export function List({ list }: ListProps) {
   return (
     <div
       ref={drop}
-      className="w-1/4 min-h-[250px] border-[0.5] border border-gray-300 border-opacity-75 flex flex-col items-center rounded-md"
+      className="w-1/4 pb-1 border-[0.5] border border-gray-300 border-opacity-75 flex flex-col items-center rounded-md"
+      style={{ minHeight: "calc(90vh - 100px)" }}
     >
       {isOpen && modalId === `${list.id}-create-task` && (
         <ModalLayout>

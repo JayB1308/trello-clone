@@ -58,6 +58,10 @@ store.subscribe(() => {
   saveState(store.getState());
 });
 
+if (window.Cypress) {
+  window.store = store;
+}
+
 export {
   store,
   addUser,

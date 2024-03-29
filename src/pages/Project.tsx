@@ -64,7 +64,7 @@ export function Project() {
         </ModalLayout>
       )}
       <div className="w-full h-full flex mt-4">
-        <div className="w-1/4 min-h-[300px] flex flex-col items-center bg-gray-100 border-2 rounded-md mt-5 shadow-md">
+        <div className="w-1/4 min-h-[300px] h-[80vh] flex flex-col items-center bg-gray-100 border-2 rounded-md mt-5 shadow-md">
           <img
             src={images[image]}
             alt="card-header"

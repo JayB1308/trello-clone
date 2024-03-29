@@ -7,12 +7,13 @@ import { Link } from "react-router-dom";
 import { pathConstants } from "../router/pathConstants";
 import { login } from "../store";
 import { User } from "../core/types/user.type";
+import { RootState } from "../store/root-state.type";
 
 export function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState<boolean>(false);
-  const users = useSelector((state) => state.user.users);
+  const users = useSelector((state: RootState) => state.user.users);
   const {
     register,
     handleSubmit,
