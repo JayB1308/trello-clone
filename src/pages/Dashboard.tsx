@@ -62,30 +62,56 @@ export function Dashboard() {
         <div className="px-3 w-full">
           <Projects projects={currentProjects} />
         </div>
-        <div className="w-1/3 mt-10 border-2 flex items-center justify-between px-2 py-1 rounded-md">
-          <button
-            disabled={currentPage === 0 ? true : false}
-            onClick={() => {
-              setCurrentPage((prev) => prev - 1);
-            }}
-          >
-            <FaChevronCircleLeft size={24} />
-          </button>
-          {totalPages.map((pageNo) => {
-            return <p>{pageNo}</p>;
-          })}
-          <button
-            onClick={() => {
-              setCurrentPage((prev) => prev + 1);
-            }}
-            disabled={
-              currentPage === Math.ceil(projects.length / PROJECTPERPAGES) ||
-              Math.ceil(projects.length / PROJECTPERPAGES) === 1
-            }
-          >
-            <FaChevronCircleRight size={24} />
-          </button>
-        </div>
+        {totalPages.length !== 0 && (
+          <div className="w-1/3 mt-10 border-2 flex items-center justify-between px-2 py-1 rounded-md">
+            <button
+              className={`${
+                currentPage === 0 ? "opacity-50 cursor-not-allowed" : ""
+              }`}
+              disabled={currentPage === 0 ? true : false}
+              onClick={() => {
+                setCurrentPage((prev) => prev - 1);
+              }}
+            >
+              <FaChevronCircleLeft size={28} />
+            </button>
+            <div className="flex items-center gap-3">
+              {totalPages.length > 0 &&
+                totalPages.map((pageNo) => {
+                  return (
+                    <p
+                      className={`${
+                        pageNo === currentPage + 1
+                          ? "bg-blue-700 text-white text-md rounded-full px-2"
+                          : "text-xs"
+                      } font-bold`}
+                    >
+                      {pageNo}
+                    </p>
+                  );
+                })}
+            </div>
+            <button
+              className={`${
+                currentPage === totalPages.length - 1
+                  ? "opacity-50 cursor-not-allowed"
+                  : ""
+              }`}
+              onClick={() => {
+                setCurrentPage((prev) => prev + 1);
+              }}
+              disabled={currentPage === totalPages.length - 1}
+            >
+              <FaChevronCircleRight size={28} />
+            </button>
+          </div>
+        )}
+
+        {totalPages.length === 0 && (
+          <h1 className="text-2xl font-bold border-2 border-gray-500 px-2 py-1 rounded-md">
+            No Projects to display
+          </h1>
+        )}
       </div>
     </DashboardLayout>
   );

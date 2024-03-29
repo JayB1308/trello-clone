@@ -30,6 +30,10 @@ declare global {
     interface Chainable {
       mount: typeof mount;
     }
+
+    interface Window {
+      store: any; // Define the store property on the window object
+    }
   }
 }
 

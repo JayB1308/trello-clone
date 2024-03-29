@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { FieldValues, useForm } from "react-hook-form";
 import { addList } from "../store";
 import { close } from "../store";
+import { toast } from "react-hot-toast";
 
 export function CreateList() {
   const { projectId } = useParams();
@@ -16,6 +17,7 @@ export function CreateList() {
   const onSubmitHandler = (data: FieldValues) => {
     if (projectId) {
       dispatch(addList({ name: data.name, projectId: projectId }));
+      toast.success("List added successfully! Note you can only add 4 lists!");
     }
     dispatch(close());
   };

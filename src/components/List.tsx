@@ -76,10 +76,15 @@ export function List({ list }: ListProps) {
             onClick={handleDeleteList}
           />
         </div>
-        <button>
+        <button
+          className={`${currentTasks.length === 5 ? "opacity-50" : ""}`}
+          disabled={currentTasks.length === 5}
+        >
           <IoIosAddCircleOutline
             size={24}
-            className="text-blue-500"
+            className={`${
+              currentTasks.length === 5 ? "text-gray-500" : "text-blue-500"
+            }`}
             onClick={() => dispatch(open({ id: `${list.id}-create-task` }))}
           />
         </button>

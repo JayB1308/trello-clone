@@ -63,9 +63,16 @@ export function Login() {
                 {...register("password", { required: "Password is required" })}
               />
               {showPassword ? (
-                <FaEyeSlash size={18} onClick={() => setShowPassword(false)} />
+                <span data-testid="hide">
+                  <FaEyeSlash
+                    size={18}
+                    onClick={() => setShowPassword(false)}
+                  />
+                </span>
               ) : (
-                <FaEye size={18} onClick={() => setShowPassword(true)} />
+                <span data-testid="show">
+                  <FaEye size={18} onClick={() => setShowPassword(true)} />
+                </span>
               )}
             </div>
             {errors.password && typeof errors.password.message === "string" && (

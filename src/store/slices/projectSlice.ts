@@ -1,7 +1,6 @@
 import { createSlice, nanoid, PayloadAction } from "@reduxjs/toolkit";
 import { Project } from "../../core/types/project.type";
 import { CreateProjectPayload } from "../../core/interfaces/create-project-payload.interface";
-import { getRandomNumber } from "../../utils";
 
 interface ProjectState {
   projects: Array<Project>;
@@ -24,7 +23,6 @@ const projectSlice = createSlice({
             id: nanoid(),
             title: action.payload.title,
             description: action.payload.description,
-            image: getRandomNumber(0, 5),
           },
         ],
       };

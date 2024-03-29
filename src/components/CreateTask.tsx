@@ -2,13 +2,12 @@ import { useDispatch } from "react-redux";
 import { FieldValues, useForm } from "react-hook-form";
 import { addTask } from "../store";
 import { close } from "../store";
-
+import { toast } from "react-hot-toast";
 interface CreateTaskProps {
   listId: string;
 }
 
 export function CreateTask({ listId }: CreateTaskProps) {
-  console.log(listId);
   const dispatch = useDispatch();
   const {
     register,
@@ -26,6 +25,7 @@ export function CreateTask({ listId }: CreateTaskProps) {
         listId: listId,
       })
     );
+    toast.success("Task Added! Note: Only 5 task per list!");
     dispatch(close());
   };
 

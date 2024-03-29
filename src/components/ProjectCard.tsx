@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { Project } from "../core/types/project.type";
@@ -6,13 +6,14 @@ import { pathConstants } from "../router/pathConstants";
 import { removeProject } from "../store";
 import { MdDeleteOutline } from "react-icons/md";
 import { images } from "../assets";
+import { getRandomNumber } from "../utils";
 
 interface ProjectCardProps {
   project: Project;
 }
 
 export function ProjectCard({ project }: ProjectCardProps) {
-  const [image, setImage] = useState<number>(0);
+  const [image] = useState<number>(getRandomNumber(0, 4));
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -24,14 +25,8 @@ export function ProjectCard({ project }: ProjectCardProps) {
     dispatch(removeProject({ id: project.id }));
   };
 
-  useEffect(() => {
-    if (project.image) {
-      setImage(project.image);
-    }
-  }, []);
-
   return (
-    <div className="w-48 bg-white shadow-lg rounded">
+    <div className="w-1/5 bg-white shadow-lg rounded">
       <img
         src={images[image]}
         alt="card-header"

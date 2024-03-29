@@ -15,27 +15,9 @@ import {
 import { modalReducer, open, close } from "./slices/modalSlice";
 import { loadState, saveState } from "./localStorage";
 import { RootState } from "./root-state.type";
+import { data } from "./data";
 
-const preloadedState: RootState = {
-  user: {
-    users: [],
-    isLoggedIn: false,
-    currentUser: null,
-  },
-  project: {
-    projects: [],
-  },
-  task: {
-    tasks: [],
-  },
-  list: {
-    lists: [],
-  },
-  modal: {
-    id: null,
-    isOpen: false,
-  },
-};
+const preloadedState: RootState = data;
 
 let state = loadState();
 
@@ -57,10 +39,6 @@ const store = configureStore({
 store.subscribe(() => {
   saveState(store.getState());
 });
-
-if (window.Cypress) {
-  window.store = store;
-}
 
 export {
   store,

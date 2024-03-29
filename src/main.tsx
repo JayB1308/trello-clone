@@ -7,9 +7,11 @@ import { store } from "./store/index.ts";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import "./index.css";
+import { Toaster } from "react-hot-toast";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
+    <Toaster />
     <Provider store={store}>
       <BrowserRouter>
         <DndProvider backend={HTML5Backend}>

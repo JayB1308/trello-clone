@@ -11,12 +11,13 @@ import { List as ListType } from "../core/types/list.type";
 import { List } from "../components/List";
 import { images } from "../assets";
 import { RootState } from "../store/root-state.type";
+import { getRandomNumber } from "../utils";
 
 export function Project() {
   const dispatch = useDispatch();
   const [lists, setLists] = useState<Array<ListType>>([]);
   const [currentProject, setCurrentProject] = useState<ProjectType>();
-  const [image, setImage] = useState<number>(0);
+  const [image] = useState<number>(getRandomNumber(0, 4));
 
   const isOpen = useSelector((state: RootState) => state.modal.isOpen);
   const allLists = useSelector((state: RootState) => state.list.lists);
@@ -46,10 +47,6 @@ export function Project() {
   useEffect(() => {
     getProject();
     getLists();
-
-    if (currentProject?.image) {
-      setImage(currentProject.image);
-    }
   }, []);
 
   useEffect(() => {
@@ -89,7 +86,10 @@ export function Project() {
           <div className="w-full flex items-center justify-between border-b-2 border-black py-2">
             <h1 className="text-3xl font-semibold ml-2">Lists</h1>
             <button
-              className="w-1/6 bg-blue-600 flex items-center justify-between text-white font-semibold rounded-full px-2 py-1"
+              disabled={lists.length === 4}
+              className={`w-1/6 bg-blue-600 flex items-center justify-between text-white font-semibold rounded-full px-2 py-1 ${
+                lists.length === 4 ? "opacity-50" : ""
+              }`}
               onClick={() => dispatch(open({ id: "create-list" }))}
             >
               <IoIosAddCircleOutline size={28} />
@@ -97,9 +97,16 @@ export function Project() {
             </button>
           </div>
           <div className="w-full h-full flex items-start gap-3 px-3 mt-3">
-            {lists.map((list) => {
-              return <List key={list.id} list={list} />;
-            })}
+            {lists.length !== 0 &&
+              lists.map((list) => {
+                return <List key={list.id} list={list} />;
+              })}
+
+            {lists.length === 0 && (
+              <h1 className="w-full text-center text-2xl font-bold mt-2">
+                No Lists to show!
+              </h1>
+            )}
           </div>
         </div>
       </div>
