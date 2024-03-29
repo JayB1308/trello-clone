@@ -1,4 +1,4 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { userReducer, login, logout, addUser } from "./slices/userSlice";
 import {
   projectReducer,
@@ -25,15 +25,16 @@ if (!state) {
   state = preloadedState;
 }
 
+const rootReducer = combineReducers({
+  user: userReducer,
+  project: projectReducer,
+  list: listReducer,
+  task: taskReducer,
+  modal: modalReducer,
+});
+
 const store = configureStore({
-  reducer: {
-    //@@ts-expect-error
-    user: userReducer,
-    project: projectReducer,
-    list: listReducer,
-    task: taskReducer,
-    modal: modalReducer,
-  },
+  reducer: rootReducer,
   preloadedState: state,
 });
 

@@ -25,7 +25,6 @@ export function List({ list }: ListProps) {
   const [currentTasks, setCurrentTasks] = useState<Array<TaskType>>([]);
   const [openTask, setOpenTask] = useState<TaskType>();
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [{ isOver }, drop] = useDrop(() => ({
     accept: "task",
     drop: (item: { task: TaskType }) => {
