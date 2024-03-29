@@ -27,6 +27,7 @@ if (!state) {
 
 const store = configureStore({
   reducer: {
+    //@@ts-expect-error
     user: userReducer,
     project: projectReducer,
     list: listReducer,
